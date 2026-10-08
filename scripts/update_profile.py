@@ -55,11 +55,9 @@ def render_recent_work(
 def render_oss_contributions(
     username: str, limit: int, token: str | None
 ) -> str:
-    query = urllib.parse.quote(
-        f"author:{username} is:pr is:merged -user:{username}"
-    )
+    query = urllib.parse.quote(f"author:{username} is:pr -user:{username}")
     result = github_get(
-        f"/search/issues?q={query}&sort=updated&order=desc&per_page=50", token
+        f"/search/issues?q={query}&sort=created&order=desc&per_page=50", token
     )
     lines: list[str] = []
     own_prefix = f"https://api.github.com/repos/{username}/"
@@ -68,19 +66,20 @@ def render_oss_contributions(
         repository_url = item.get("repository_url", "")
         if repository_url.startswith(own_prefix):
             continue
+        merged = bool(item.get("pull_request", {}).get("merged_at"))
+        if item.get("state") != "open" and not merged:
+            continue
         repository = repository_url.removeprefix("https://api.github.com/repos/")
+        status = "merged" if merged else "open"
         lines.append(
             f"- [**{repository} #{item['number']}**]({item['html_url']}) — "
-            f"{item['title']}"
+            f"{item['title']} ({status} PR)"
         )
         if len(lines) >= limit:
             break
 
     if not lines:
-        return (
-            "I am currently preparing my first sustained contributions in "
-            "Kubernetes observability and SLO tooling."
-        )
+        return "Recent external pull requests will appear here."
     return "\n".join(lines)
 
 

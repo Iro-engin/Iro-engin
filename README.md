@@ -36,9 +36,9 @@ I am open to full-time SRE and Platform Engineering roles. For contract work, I 
 ## Recent OSS contributions
 
 <!-- oss-contributions:start -->
-- [Grafana k8s-monitoring-helm #3090](https://github.com/grafana/k8s-monitoring-helm/pull/3090) — align Helm across local development, chart-testing, platform tests, and CI (open PR)
-- [Robusta krr #554](https://github.com/robusta-dev/krr/pull/554) — use range queries for long Amazon Managed Service for Prometheus pod history (open PR)
-- [Grafana k8s-monitoring-helm #3084](https://github.com/grafana/k8s-monitoring-helm/pull/3084) — allow disabling resource detection in application observability (open PR)
+- [**robusta-dev/krr #554**](https://github.com/robusta-dev/krr/pull/554) — fix: use range queries for long AMP pod history (open PR)
+- [**grafana/k8s-monitoring-helm #3090**](https://github.com/grafana/k8s-monitoring-helm/pull/3090) — maint: align Helm across development tooling (open PR)
+- [**grafana/k8s-monitoring-helm #3084**](https://github.com/grafana/k8s-monitoring-helm/pull/3084) — feat(application-observability): allow disabling resource detection (open PR)
 <!-- oss-contributions:end -->
 
 ## Find me online
